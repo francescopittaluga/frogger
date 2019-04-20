@@ -73,11 +73,11 @@ function game_loop()
 	}
 	
 	// If frog is dead
-	if(is_collision()   || is_in_water() || is_out_of_bounds() || 
-	   is_out_of_time() || !is_safe_cross() ) {
-			frog_died();
+	if(is_collision() || is_in_water() || is_out_of_bounds() || is_out_of_time() || !is_safe_cross() ) {
+		lives--;
+		reset_frog();
 	} 
-	
+
 	// If player has zero frogs left (aka game over)
 	if(lives == 0) {
 		game_over();
@@ -113,6 +113,7 @@ function crossed_safely()
 		level++;
 		score += 1000;
 		speed++;
+
 		for(i in slots) {
 			slots[i].isfull = 0;
 		}
@@ -125,10 +126,12 @@ function crossed_safely()
 		score += 200;
 	}
 	check_for_10K();
+	reset_frog();
 }
 
+
 // Resets frog and Removes a life.
-function frog_died()
+function reset_frog()
 {
 		time.timer = 0;
 		frog.ispinned = 0;
@@ -137,7 +140,6 @@ function frog_died()
 		frog.isactive = 0;
 		time.isactive = 0;
 		frog.x = 1;
-		lives--;
 		setTimeout(function() {
 			objspeed = level;
 			time.x = 235;
