@@ -1,5 +1,5 @@
 # frogger
 
-play at: https://francescopittaluga.github.io/frogger
+play at: https://francescopittaluga.com/frogger
 
 ![ScreenShot](screenshot.png)
